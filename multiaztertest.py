@@ -3195,7 +3195,7 @@ class Main(object):
             train_dataset = load_dataset("symanto/autextification2023", "detection_es", split="train")
             test_dataset = load_dataset("symanto/autextification2023", "detection_es", split="test")
 
-            texts = [data["text"] for data in train_dataset][0:2]
+            texts = [data["text"] for data in test_dataset]
 
             print(f"{len(texts)} texts in total")
 
@@ -3207,7 +3207,7 @@ class Main(object):
                 indicators.append(doc.get_indicators(similaritymodel))
 
             df = pd.DataFrame(indicators)
-            df.to_csv("train_multiazter_metrics.csv", index_label="index")
+            df.to_csv("test_multiazter_metrics.csv", index_label="index")
 
         else:
             ### Files will be created in this folder
