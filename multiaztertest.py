@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+from collections import OrderedDict
 import csv
 
 # In[29]:
@@ -4068,7 +4069,7 @@ class Main(object):
                 "symanto/autextification2023", "detection_es", split="test"
             )
 
-            texts = [data["text"] for data in test_dataset][:2]
+            texts = [data["text"] for data in test_dataset]
 
             print(f"{len(texts)} texts in total")
 
@@ -4080,7 +4081,7 @@ class Main(object):
                 ind = doc.get_indicators(similaritymodel)
                 printer = Printer(ind, language, similarity, printids, ratios)
                 printer.load_ind_sentences()
-                indicators.append(printer.print_info())
+                indicators.append(OrderedDict(printer.print_info()))
 
             df = pd.DataFrame(indicators)
             df.to_csv("test_multiazter_metrics.csv", index_label="index")
