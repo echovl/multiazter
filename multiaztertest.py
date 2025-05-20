@@ -4069,11 +4069,11 @@ class Main(object):
             #     "symanto/autextification2023", "detection_es", split="test"
             # )
 
-            train_df = pd.DataFrame("./text_complexity_train.csv")
-            test_df = pd.DataFrame("./text_complexity_test.csv")    
-            val_df = pd.DataFrame("./text_complexity_val.csv")
+            train_df = pd.read_csv("./text_complexity_train.csv")
+            test_df = pd.read_csv("./text_complexity_test.csv")    
+            val_df = pd.read_csv("./text_complexity_val.csv")
 
-            texts = train_df['text'].tolist()
+            texts = test_df['text'].tolist()
             print(f"{len(texts)} texts in total")
 
             indicators = []
@@ -4087,7 +4087,7 @@ class Main(object):
                 indicators.append(OrderedDict(printer.print_info()))
 
             df = pd.DataFrame(indicators)
-            df.to_csv("text_complexity_train_multiazter_indicators.csv", index_label="index")
+            df.to_csv("text_complexity_test_multiazter_indicators.csv", index_label="index")
 
         else:
             ### Files will be created in this folder
